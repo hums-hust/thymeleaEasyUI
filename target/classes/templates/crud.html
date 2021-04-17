@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>CRUD</title>
+    <link rel="stylesheet" type="text/css" href="../easyui/themes/default/easyui.css" />
+    <link rel="stylesheet" type="text/css" href="../easyui/themes/icon.css" />
+    <script type="text/javascript" src="../easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
+    <!-- 中文化 -->
+    <script type="text/javascript" src="../easyui/locale/easyui-lang-zh_CN.js"></script>
+    <!-- 导入自己的 js -->
+    <script type="text/javascript" src="../my.js"></script>
+</head>
+
+<body>
+<table id="dg" title="用户 CRUD 管理" class="easyui-datagrid" fitColumns="true" pagination="true" rownumbers="true" url="/user/list" fit="true" toolbar="#tb">
+    <thead>
+    <tr>
+        <th field="cb" checkbox="true" align="center"></th>
+        <th field="id" width="100" align="center">编号</th>
+        <th field="name" width="200" align="center">用户名</th>
+        <th field="pwd" width="200" align="center">密码</th>
+    </tr>
+    </thead>
+</table>
+
+<!-- CRUD 菜单栏 -->
+<div id="tb">
+    <div>
+        <!--plain="true"去掉边框-->
+        <a href="javascript:openLinkAddDialog()" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
+        <a href="javascript:openLinkModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
+        <a href="javascript:deleteLink()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+    </div>
+    <div>
+        &nbsp;用户名：&nbsp;<input type="text" id="s_name" size="20" onkeydown="if(event.keyCode==13) searchWebSite()" /> &nbsp;密码：&nbsp;
+        <input type="text" id="s_word" size="20" onkeydown="if(event.keyCode==13) searchWebSite()" />
+        <a href="javascript:searchWebSite()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
+    </div>
+</div>
+
+<!-- 修改框内容 -->
+<div id="dlg" class="easyui-dialog" style="width: 500px;height: 200px;padding: 10px 20px" closed="true" buttons="#dlg-buttons">
+    <form id="fm" method="post">
+        <table cellspacing="8px">
+            <tr>
+                <td>用户名：</td>
+                <td>
+                    <input type="text" id="name" name="name" class="easyui-validatebox" required="true" />
+                </td>
+            </tr>
+            <tr>
+                <td>密码：</td>
+                <td>
+                    <input type="text" id="word" name="word" class="easyui-validatebox" required="true" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<!-- 修改对话框的 save、close 按钮 -->
+<div id="dlg-buttons">
+    <a href="javascript:saveLink()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+    <a href="javascript:closeLinkDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+</div>
+
+</body>
+
+</html>
